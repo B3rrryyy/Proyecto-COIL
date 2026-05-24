@@ -84,7 +84,7 @@ export default function Register() {
       await api.post("/auth/register", {
         nombre: form.nombre.trim(),
         apellido: form.apellido.trim(),
-        email: form.email.trim(),
+        email: form.email.trim(),    // ← CORRECTO
         password: form.password,
       });
       setSuccess(true);
@@ -211,6 +211,7 @@ export default function Register() {
                   className="h-10 w-full rounded-md border border-gray-200 bg-white px-3 text-[13px] text-gray-900 placeholder-gray-300 outline-none transition focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20 disabled:opacity-50"
                 />
               </div>
+
               <div className="flex flex-col gap-1.5">
                 <label className="text-[12px] font-medium text-gray-600" htmlFor="apellido">
                   Apellido <span className="text-red-400">*</span>
