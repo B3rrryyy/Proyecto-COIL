@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import type { User } from "../services/auth.service";
-
+import type { LoginPayload } from "../services/auth.service";
 const API_URL = import.meta.env.VITE_API_URL;
 
 export const login = async (data: LoginPayload) => {
