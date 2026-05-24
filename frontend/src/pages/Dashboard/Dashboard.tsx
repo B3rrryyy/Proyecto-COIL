@@ -253,7 +253,7 @@ function RecentRow({ ficha }: { ficha: RecentFicha }) {
 
     export default function Dashboard() {
         const [stats, setStats] = useState<StatsData>(MOCK_STATS);
-        const [recent, setRecent] = useState<RecentFicha[]>(MOCK_RECENT);
+        const [recent] = useState([]);
         const [loading, setLoading] = useState(false);
 
         useEffect(() => {
