@@ -5,7 +5,6 @@ import {
   TriangleAlert,
   ClipboardList,
   TrendingUp,
-  MapPin,
   CheckCircle2,
   AlertTriangle,
   XCircle,
@@ -189,7 +188,7 @@ export default function Dashboard() {
 
   const [recent] = useState<RecentFicha[]>(MOCK_RECENT);
 
-  const [loading, setLoading] = useState(false);
+  const [setLoading] = useState(false);
 
   useEffect(() => {
     const fetchStats = async () => {
@@ -231,8 +230,7 @@ export default function Dashboard() {
     fetchStats();
   }, []);
 
-  const estadoCount = (estado: RecentFicha["estado"]) =>
-    recent.filter((f: RecentFicha) => f.estado === estado).length;
+  
 
   return (
     <div className="flex flex-col gap-6">
