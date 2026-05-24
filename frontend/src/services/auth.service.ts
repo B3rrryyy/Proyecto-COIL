@@ -19,7 +19,7 @@ const AuthService = {
 };
 
 export interface User {
-    id: string;
+    id_usuario: string;
     nombre: string;
     apellido: string;
     email: string;
