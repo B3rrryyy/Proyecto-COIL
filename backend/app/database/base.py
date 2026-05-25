@@ -1,34 +1,23 @@
-import uuid
-from datetime import datetime, timezone
+from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
+from sqlalchemy.orm import sessionmaker, declarative_base
+from app.core.config import settings
 
-from sqlalchemy import DateTime, func
-from sqlalchemy.dialects.postgresql import UUID
-from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
+DATABASE_URL = settings.DATABASE_URL
 
+engine = create_async_engine(
+    DATABASE_URL,
+    echo=True,
+)
 
-class Base(DeclarativeBase):
-    pass
+AsyncSessionLocal = sessionmaker(
+    bind=engine,
+    class_=AsyncSession,
+    expire_on_commit=False,
+)
 
-
-class TimestampMixin:
-    created_at: Mapped[datetime] = mapped_column(
-        DateTime(timezone=True),
-        server_default=func.now(),
-        nullable=False,
-    )
-    updated_at: Mapped[datetime] = mapped_column(
-        DateTime(timezone=True),
-        server_default=func.now(),
-        onupdate=lambda: datetime.now(timezone.utc),
-        nullable=False,
-    )
+Base = declarative_base()
 
 
-class UUIDMixin:
-    id: Mapped[uuid.UUID] = mapped_column(
-        UUID(as_uuid=True),
-        primary_key=True,
-        default=uuid.uuid4,
-        index=True,
-    )
-    
+async def get_db():
+    async with AsyncSessionLocal() as session:
+        yield session
