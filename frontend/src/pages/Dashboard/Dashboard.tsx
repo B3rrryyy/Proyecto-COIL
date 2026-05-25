@@ -188,7 +188,7 @@ export default function Dashboard() {
 
   const [recent] = useState<RecentFicha[]>(MOCK_RECENT);
 
-  const [setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchStats = async () => {
@@ -234,7 +234,11 @@ export default function Dashboard() {
 
   return (
     <div className="flex flex-col gap-6">
-      <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+      <div
+          className={`grid grid-cols-2 gap-4 lg:grid-cols-4 ${
+            loading ? "opacity-60" : ""
+          }`}
+        >
         <TotalCard total={stats.total} />
 
         <StatCard
