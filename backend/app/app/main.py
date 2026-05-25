@@ -1,8 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.routers.auth_router import router as auth_router
-from app.routers.guardavia_router import router as guardavia_router
+from app.app.routers.auth_router import router as auth_router
+from app.app.routers.guardavia_router import router as guardavia_router
 
 app = FastAPI(
     title="Sistema de Gestión de Infraestructura Vial",
