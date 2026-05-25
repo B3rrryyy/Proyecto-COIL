@@ -10,7 +10,11 @@ const AuthService = {
     async login(payload: LoginPayload): Promise<TokenResponse> {
         const { data } = await api.post<TokenResponse>("/auth/login", payload);
         return data;
-    }
+    },
+    async getMe(): Promise<User> {
+        const { data } = await api.get<User>("/auth/me");
+        return data;
+    },
 };
 
 export interface User {
